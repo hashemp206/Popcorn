@@ -10,6 +10,7 @@
 //  see http://clean-swift.com
 //
 
+import Foundation
 
 @objc protocol SearchMoviesRoutingLogic
 {

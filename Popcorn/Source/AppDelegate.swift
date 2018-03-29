@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 3: assign rootView controller to the window
         window?.rootViewController = navigationVC
         
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
