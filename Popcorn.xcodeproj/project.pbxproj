@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1117D9F2EB2E452D495100B8 /* Pods_Popcorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8817C72FC35999F21CAB412C /* Pods_Popcorn.framework */; };
 		9446DF9A206CCDF3009CBE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446DF99206CCDF3009CBE8C /* AppDelegate.swift */; };
-		9446DF9C206CCDF3009CBE8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446DF9B206CCDF3009CBE8C /* ViewController.swift */; };
 		9446DFA1206CCDF3009CBE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9446DFA0206CCDF3009CBE8C /* Assets.xcassets */; };
 		9446DFAF206CCDF3009CBE8C /* PopcornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446DFAE206CCDF3009CBE8C /* PopcornTests.swift */; };
 		946AFC80206CDD2B00AE05B7 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC7F206CDD2B00AE05B7 /* Movie.swift */; };
@@ -36,7 +35,6 @@
 		8817C72FC35999F21CAB412C /* Pods_Popcorn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Popcorn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9446DF96206CCDF3009CBE8C /* Popcorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Popcorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9446DF99206CCDF3009CBE8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9446DF9B206CCDF3009CBE8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9446DFA0206CCDF3009CBE8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9446DFA5206CCDF3009CBE8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9446DFAA206CCDF3009CBE8C /* PopcornTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopcornTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,10 +101,9 @@
 		9446DF98206CCDF3009CBE8C /* Popcorn */ = {
 			isa = PBXGroup;
 			children = (
-				946AFC86206D1F1000AE05B7 /* Helper */,
-				946AFC77206CDA9600AE05B7 /* Domain */,
+				946AFC95206D6BAA00AE05B7 /* Specs */,
+				946AFC94206D6B9800AE05B7 /* Source */,
 				9446DF99206CCDF3009CBE8C /* AppDelegate.swift */,
-				9446DF9B206CCDF3009CBE8C /* ViewController.swift */,
 				946AFC89206D1F4600AE05B7 /* Resources */,
 			);
 			path = Popcorn;
@@ -176,11 +173,27 @@
 		946AFC89206D1F4600AE05B7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9446DFA5206CCDF3009CBE8C /* Info.plist */,
 				9446DFA0206CCDF3009CBE8C /* Assets.xcassets */,
 				946AFC8A206D1F7200AE05B7 /* Launch Screen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		946AFC94206D6B9800AE05B7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				946AFC77206CDA9600AE05B7 /* Domain */,
+				946AFC86206D1F1000AE05B7 /* Helper */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		946AFC95206D6BAA00AE05B7 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				9446DFA5206CCDF3009CBE8C /* Info.plist */,
+			);
+			path = Specs;
 			sourceTree = "<group>";
 		};
 		B2B5484F2C53DA2AA002BD78 /* Frameworks */ = {
@@ -372,7 +385,6 @@
 			files = (
 				946AFC85206D1DFD00AE05B7 /* DomainURLs.swift in Sources */,
 				946AFC83206CDD9800AE05B7 /* Codable+Utils.swift in Sources */,
-				9446DF9C206CCDF3009CBE8C /* ViewController.swift in Sources */,
 				9446DF9A206CCDF3009CBE8C /* AppDelegate.swift in Sources */,
 				946AFC80206CDD2B00AE05B7 /* Movie.swift in Sources */,
 				946AFC88206D1F2800AE05B7 /* Constants.swift in Sources */,
