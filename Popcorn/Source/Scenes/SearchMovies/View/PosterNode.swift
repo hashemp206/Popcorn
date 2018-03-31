@@ -29,7 +29,7 @@ class PosterNode: HANetworkImageNode {
         shadowColor = UIColor.borderColor.cgColor
         shadowOffset = CGSize(width: 0, height: 4)
         shadowOpacity = 1
-        shadowRadius = 7
+        shadowRadius = 5
         
         // if clipToBounds is enabled, shodow will clipped
         clipsToBounds = false

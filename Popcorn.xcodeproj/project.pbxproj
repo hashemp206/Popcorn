@@ -42,6 +42,7 @@
 		94DF99AA206FC4F700611294 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99A0206FC4F700611294 /* NSData+ImageContentType.m */; };
 		94DF99AB206FC4F700611294 /* SDImageCacheConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99A1206FC4F700611294 /* SDImageCacheConfig.m */; };
 		94DF99B1206FCE1D00611294 /* HAImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99B0206FCE1C00611294 /* HAImageCache.swift */; };
+		94DF99B92070060E00611294 /* StatusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99B82070060E00611294 /* StatusNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		94DF99A4206FC4F700611294 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
 		94DF99AF206FCD3F00611294 /* Popcorn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Popcorn-Bridging-Header.h"; sourceTree = "<group>"; };
 		94DF99B0206FCE1C00611294 /* HAImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAImageCache.swift; sourceTree = "<group>"; };
+		94DF99B82070060E00611294 /* StatusNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusNode.swift; sourceTree = "<group>"; };
 		F379C4B241833C8705BEFB98 /* Pods-Popcorn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Popcorn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,6 +279,7 @@
 			children = (
 				94BAC445206E52E600AD5303 /* MovieNode.swift */,
 				94BAC44F206E69E700AD5303 /* PosterNode.swift */,
+				94DF99BA20700A9A00611294 /* ErrorStatuses */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +341,14 @@
 				94DF99A4206FC4F700611294 /* UIImage+GIF.h */,
 			);
 			path = SDImageCache;
+			sourceTree = "<group>";
+		};
+		94DF99BA20700A9A00611294 /* ErrorStatuses */ = {
+			isa = PBXGroup;
+			children = (
+				94DF99B82070060E00611294 /* StatusNode.swift */,
+			);
+			path = ErrorStatuses;
 			sourceTree = "<group>";
 		};
 		B2B5484F2C53DA2AA002BD78 /* Frameworks */ = {
@@ -556,6 +567,7 @@
 				946AFC9E206D6C9F00AE05B7 /* SearchMoviesPresenter.swift in Sources */,
 				9490535F206ED9BD0003E216 /* LoadingCell.swift in Sources */,
 				94DF99AB206FC4F700611294 /* SDImageCacheConfig.m in Sources */,
+				94DF99B92070060E00611294 /* StatusNode.swift in Sources */,
 				946AFCA2206D6C9F00AE05B7 /* SearchMoviesViewController.swift in Sources */,
 				946AFC9F206D6C9F00AE05B7 /* SearchMoviesWorker.swift in Sources */,
 				94DF99AA206FC4F700611294 /* NSData+ImageContentType.m in Sources */,

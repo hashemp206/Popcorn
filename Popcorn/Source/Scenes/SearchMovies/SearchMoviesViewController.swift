@@ -15,7 +15,7 @@ import Async
 
 private enum SearchMoviesState
 {
-    case `default`, loading, loaded(movies: [SearchMovies.Search.ViewModel.DisplayMovie]), error(message: String)
+    case `default`, loading, loaded(movies: [SearchMovies.Search.ViewModel.DisplayMovie]), error(reason: SearchMovies.SearchFailure.ViewModel.Reason)
 }
 
 protocol SearchMoviesDisplayLogic: class
@@ -41,6 +41,7 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     let searchController = UISearchController(searchResultsController: nil)
     
     let collectionNode: ASCollectionNode
+    var statusNode: StatusNode?
     
     // MARK: Object lifecycle
     
@@ -83,8 +84,6 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         router.dataStore = interactor
     }
     
-    
-    
     // MARK: View lifecycle
     
     override func viewDidLoad()
@@ -92,21 +91,19 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         super.viewDidLoad()
         customizeUI()
         setupSearchController()
+        
+        state = .default
     }
     
     // The following makes the scroll bar visible at first, then allows it to hide when scrolling:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = false
-        }
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = true
-        }
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -121,6 +118,9 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         collectionNode.view.alwaysBounceVertical = true
         // by default collectionNode is hidden
         collectionNode.isHidden = true
+        // hide keyboard while scrolling
+        collectionNode.view.keyboardDismissMode = .interactive
+        
         // set backgroundColor. default is black
         node.backgroundColor = .white
         
@@ -177,7 +177,7 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     
     func displaySearchFailure(viewModel: SearchMovies.SearchFailure.ViewModel)
     {
-        state = .error(message: viewModel.message)
+        state = .error(reason: viewModel.reason)
     }
     
     // MARK: States
@@ -186,23 +186,44 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         didSet {
             switch state {
             case .default:
-                print("default state")
-               
+                
+                let status = StatusModel(title: "Search your favorites movies", image: #imageLiteral(resourceName: "logo"))
+                show(status: status)
                 
             case .loading:
-                print("loading")
+                
+                statusNode?.removeFromSupernode()
                 collectionNode.isHidden = false
                 clearAllRows()
                 
             case .loaded(let movies):
+                
                 insertNewRows(movies)
                 
                 // completeBatchFetching must be called with value of true to recieve future batch fetching request calls
                 context?.completeBatchFetching(true)
                 
-            case .error(let message):
-                print(message)
+            case .error(let reason):
                 context?.cancelBatchFetching()
+                
+                switch reason {
+                case .noConnection:
+                    
+                    let status = StatusModel(title: "Please connect to the internet", image: #imageLiteral(resourceName: "warning"), actionTitle: "Settings") {
+                        UIApplication.openSettings()
+                    }
+                    show(status: status)
+                    
+                case .error(let message):
+                    print(message)
+                    // hide keyboard, if visible
+                    self.view.endEditing(true)
+                    
+                    let status = StatusModel(title: "Oops! an error occured", image: #imageLiteral(resourceName: "warning"), actionTitle: "Retry") { [unowned self] in
+                        self.startSearch()
+                    }
+                    show(status: status)
+                }
             }
         }
     }
@@ -221,7 +242,9 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         
         if displayedMovies.isEmpty {
             // no result found
-            
+            let searchTerm = searchController.searchBar.text!
+            let status = StatusModel(title: "Oops! we couldn’t find “\(searchTerm)”", image: #imageLiteral(resourceName: "sad"))
+            show(status: status)
             
         } else {
             var indexPaths = [IndexPath]()
@@ -247,6 +270,19 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     
     func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func show(status: StatusModel)
+    {
+        let statusNode = StatusNode(status: status)
+        statusNode.frame = node.frame
+        
+        // clear old status if it is displaying
+        self.statusNode?.removeFromSupernode()
+        // display new status
+        node.addSubnode(statusNode)
+        
+        self.statusNode = statusNode
     }
 }
 
@@ -322,6 +358,17 @@ extension SearchMoviesViewController: UISearchBarDelegate
 {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        startSearch()
+    }
+    
+    func startSearch()
+    {
+        // after a complete search paging, activityIndicator section will be removed to indicate user scrolled all the search results. for new search is this section is removed we appened it again
+        if sections.index(of: .activityIndicator) == nil {
+            sections.append(.activityIndicator)
+        }
+        
+        let searchBar = searchController.searchBar
         
         if searchBarIsEmpty() == false {
             search(withSearchTerm: searchBar.text!)

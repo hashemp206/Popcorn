@@ -16,6 +16,13 @@ extension UIScreen {
     }
 }
 
+extension UIApplication {
+    
+    public static func openSettings() {
+        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+    }
+}
+
 extension DateFormatter {
     // we need a date formatter to handle the yyyy-MM-dd format of the releaseDate
     static let yyyyMMdd: DateFormatter = {

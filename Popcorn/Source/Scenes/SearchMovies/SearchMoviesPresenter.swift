@@ -56,8 +56,17 @@ class SearchMoviesPresenter: SearchMoviesPresentationLogic
     
     func presentSearchFailure(response: SearchMovies.SearchFailure.Response)
     {
-        let message = response.error.localizedDescription
-        viewController?.displaySearchFailure(viewModel: SearchMovies.SearchFailure.ViewModel(message: message))
+        let reason: SearchMovies.SearchFailure.ViewModel.Reason
+        
+        switch URLError.Code(rawValue: (response.error as NSError).code) {
+        case .notConnectedToInternet:
+            reason = .noConnection
+        default:
+            // an error occured while fetching movies
+            reason = .error(message: response.error.localizedDescription)
+        }
+        
+        viewController?.displaySearchFailure(viewModel: SearchMovies.SearchFailure.ViewModel(reason: reason))
     }
 }
 

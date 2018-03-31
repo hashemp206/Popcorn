@@ -52,7 +52,10 @@ enum SearchMovies
         }
         
         struct ViewModel {
-            let message: String
+            enum Reason {
+                case noConnection, error(message: String)
+            }
+            let reason: Reason
         }
     }
 }
