@@ -41,7 +41,14 @@ class SearchMoviesPresenter: SearchMoviesPresentationLogic
             if let posterPath = movie.poster_path {
                 posterURL = URL(string: App.posterBaseURL.absoluteString + posterPath)
             }
-            return SearchMovies.Search.ViewModel.DisplayMovie(id: movie.id, title: movie.title, posterURL: posterURL, releaseDate: dateFormatter.string(from: movie.releaseDate), description: movie.description)
+            let releaseDateStr: String
+            if let releaseDate = movie.releaseDate {
+                releaseDateStr = dateFormatter.string(from: releaseDate)
+            } else {
+                releaseDateStr = "TBA"
+            }
+            
+            return SearchMovies.Search.ViewModel.DisplayMovie(id: movie.id, title: movie.title, posterURL: posterURL, releaseDate: releaseDateStr, description: movie.description)
         }
         
         viewController?.displaySearchedMovies(viewModel: SearchMovies.Search.ViewModel(displayedMovies: displayedMovies))

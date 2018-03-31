@@ -13,7 +13,7 @@ struct Movie: Decodable {
     
     let id: Int
     let title: String
-    let releaseDate: Date
+    let releaseDate: Date?
     let description: String
     let poster_path: String?
     
@@ -35,13 +35,7 @@ extension Movie {
         let dateString = try values.decode(String.self, forKey: .releaseDate)
         // we use custom date formatter for decoding dates like yyyy-MM-dd
         let formatter = DateFormatter.yyyyMMdd
-        if let date = formatter.date(from: dateString) {
-            releaseDate = date
-        } else {
-            throw DecodingError.dataCorruptedError(forKey: .releaseDate,
-                                                   in: values,
-                                                   debugDescription: "Date string does not match format expected by formatter.")
-        }
+        releaseDate = formatter.date(from: dateString)
     }
 }
 
