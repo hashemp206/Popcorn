@@ -23,7 +23,7 @@ class PosterNode: HANetworkImageNode {
             $0.image(withCornerRadius: cornerRadius)
         }
         
-        backgroundColor = .white
+        backgroundColor = .borderColor
 
         // set shadow
         shadowColor = UIColor.borderColor.cgColor
@@ -31,5 +31,7 @@ class PosterNode: HANetworkImageNode {
         shadowOpacity = 1
         shadowRadius = 7
         
+        // if clipToBounds is enabled, shodow will clipped
+        clipsToBounds = false
     }
 }

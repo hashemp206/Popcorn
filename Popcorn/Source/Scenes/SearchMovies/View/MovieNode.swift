@@ -29,6 +29,7 @@ class MovieNode: ASCellNode {
             $0.font(UIFont.systemFont(ofSize: 16, weight: .medium))
             .foreground(color: .textDark)
         }
+        
         dateNode.attributedText = movie.releaseDate.at.attributed {
             $0.font(UIFont.systemFont(ofSize: 12))
             .foreground(color: .lightGray)
@@ -48,7 +49,10 @@ class MovieNode: ASCellNode {
         // to layout nodes, Layout Api uses a declerative language similar to flexbox in CSS
         
         // imaging a row, in that row, titleNode and dateNode are positioned horiontally, and remaining space is between those nodes
-        let titleDateSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: .spaceBetween, alignItems: .end, children: [titleNode, dateNode])
+        let titleDateSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 0, justifyContent: .spaceBetween, alignItems: .start, children: [titleNode, dateNode])
+        
+        // title text shoud not exceed of the cell bounds
+        titleNode.style.flexShrink = 1
         
         // for the left cloum which contains all the text nodes, they are positioned vertically and remaining space is distributed between them
         let leftColumnSpec = ASStackLayoutSpec(direction: .vertical, spacing: 8, justifyContent: .spaceBetween, alignItems: .stretch, children: [titleDateSpec, descriptionNode])
