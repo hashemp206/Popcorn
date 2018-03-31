@@ -34,6 +34,14 @@
 		94BAC450206E69E700AD5303 /* PosterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC44F206E69E700AD5303 /* PosterNode.swift */; };
 		94BAC452206EBB0A00AD5303 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC451206EBB0A00AD5303 /* UtilityExtensions.swift */; };
 		94DF9994206F806800611294 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF9993206F806800611294 /* UIImage+Extensions.swift */; };
+		94DF99A5206FC4F700611294 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF9998206FC4F700611294 /* SDWebImageDecoder.m */; };
+		94DF99A6206FC4F700611294 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF999B206FC4F700611294 /* UIImage+GIF.m */; };
+		94DF99A7206FC4F700611294 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF999C206FC4F700611294 /* UIImage+MultiFormat.m */; };
+		94DF99A8206FC4F700611294 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF999D206FC4F700611294 /* SDWebImageCompat.m */; };
+		94DF99A9206FC4F700611294 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF999E206FC4F700611294 /* SDImageCache.m */; };
+		94DF99AA206FC4F700611294 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99A0206FC4F700611294 /* NSData+ImageContentType.m */; };
+		94DF99AB206FC4F700611294 /* SDImageCacheConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99A1206FC4F700611294 /* SDImageCacheConfig.m */; };
+		94DF99B1206FCE1D00611294 /* HAImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99B0206FCE1C00611294 /* HAImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +87,22 @@
 		94BAC44F206E69E700AD5303 /* PosterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterNode.swift; sourceTree = "<group>"; };
 		94BAC451206EBB0A00AD5303 /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
 		94DF9993206F806800611294 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		94DF9997206FC4F700611294 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
+		94DF9998206FC4F700611294 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		94DF9999206FC4F700611294 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		94DF999A206FC4F700611294 /* SDImageCacheConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCacheConfig.h; sourceTree = "<group>"; };
+		94DF999B206FC4F700611294 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		94DF999C206FC4F700611294 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
+		94DF999D206FC4F700611294 /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
+		94DF999E206FC4F700611294 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
+		94DF999F206FC4F700611294 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		94DF99A0206FC4F700611294 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
+		94DF99A1206FC4F700611294 /* SDImageCacheConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCacheConfig.m; sourceTree = "<group>"; };
+		94DF99A2206FC4F700611294 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		94DF99A3206FC4F700611294 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
+		94DF99A4206FC4F700611294 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		94DF99AF206FCD3F00611294 /* Popcorn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Popcorn-Bridging-Header.h"; sourceTree = "<group>"; };
+		94DF99B0206FCE1C00611294 /* HAImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAImageCache.swift; sourceTree = "<group>"; };
 		F379C4B241833C8705BEFB98 /* Pods-Popcorn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Popcorn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +231,7 @@
 		946AFC94206D6B9800AE05B7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				94DF9995206FC4E300611294 /* Libraries */,
 				946AFC77206CDA9600AE05B7 /* Domain */,
 				94BAC448206E62C700AD5303 /* Shared */,
 				9446DF99206CCDF3009CBE8C /* AppDelegate.swift */,
@@ -220,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				9446DFA5206CCDF3009CBE8C /* Info.plist */,
+				94DF99AF206FCD3F00611294 /* Popcorn-Bridging-Header.h */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -282,6 +308,36 @@
 				9490535C206ED3040003E216 /* ASDisplayNode+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		94DF9995206FC4E300611294 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				94DF9996206FC4F700611294 /* SDImageCache */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		94DF9996206FC4F700611294 /* SDImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				94DF99B0206FCE1C00611294 /* HAImageCache.swift */,
+				94DF9997206FC4F700611294 /* NSData+ImageContentType.h */,
+				94DF9998206FC4F700611294 /* SDWebImageDecoder.m */,
+				94DF9999206FC4F700611294 /* SDImageCache.h */,
+				94DF999A206FC4F700611294 /* SDImageCacheConfig.h */,
+				94DF999B206FC4F700611294 /* UIImage+GIF.m */,
+				94DF999C206FC4F700611294 /* UIImage+MultiFormat.m */,
+				94DF999D206FC4F700611294 /* SDWebImageCompat.m */,
+				94DF999E206FC4F700611294 /* SDImageCache.m */,
+				94DF999F206FC4F700611294 /* SDWebImageDecoder.h */,
+				94DF99A0206FC4F700611294 /* NSData+ImageContentType.m */,
+				94DF99A1206FC4F700611294 /* SDImageCacheConfig.m */,
+				94DF99A2206FC4F700611294 /* SDWebImageCompat.h */,
+				94DF99A3206FC4F700611294 /* UIImage+MultiFormat.h */,
+				94DF99A4206FC4F700611294 /* UIImage+GIF.h */,
+			);
+			path = SDImageCache;
 			sourceTree = "<group>";
 		};
 		B2B5484F2C53DA2AA002BD78 /* Frameworks */ = {
@@ -473,10 +529,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DF99A7206FC4F700611294 /* UIImage+MultiFormat.m in Sources */,
 				946AFC85206D1DFD00AE05B7 /* DomainURLs.swift in Sources */,
 				946AFCA3206D6C9F00AE05B7 /* SearchMoviesInteractor.swift in Sources */,
 				94BAC452206EBB0A00AD5303 /* UtilityExtensions.swift in Sources */,
+				94DF99A8206FC4F700611294 /* SDWebImageCompat.m in Sources */,
 				94BAC446206E52E600AD5303 /* MovieNode.swift in Sources */,
+				94DF99A5206FC4F700611294 /* SDWebImageDecoder.m in Sources */,
 				946AFC83206CDD9800AE05B7 /* Codable+Utils.swift in Sources */,
 				9446DF9A206CCDF3009CBE8C /* AppDelegate.swift in Sources */,
 				946AFCA0206D6C9F00AE05B7 /* SearchMoviesRouter.swift in Sources */,
@@ -485,8 +544,10 @@
 				946AFCA1206D6C9F00AE05B7 /* SearchMoviesModels.swift in Sources */,
 				94BAC450206E69E700AD5303 /* PosterNode.swift in Sources */,
 				946AFC88206D1F2800AE05B7 /* Constants.swift in Sources */,
+				94DF99A6206FC4F700611294 /* UIImage+GIF.m in Sources */,
 				946AFC8F206D235300AE05B7 /* PopcornApi.swift in Sources */,
 				94BAC44A206E62E600AD5303 /* HANetworkImageNode.swift in Sources */,
+				94DF99B1206FCE1D00611294 /* HAImageCache.swift in Sources */,
 				94BAC44D206E681000AD5303 /* ColorPalette.swift in Sources */,
 				946AFC8D206D22EF00AE05B7 /* Networking+Extensions.swift in Sources */,
 				94DF9994206F806800611294 /* UIImage+Extensions.swift in Sources */,
@@ -494,8 +555,11 @@
 				9490536E206F60F20003E216 /* UIView+FrameHelper.swift in Sources */,
 				946AFC9E206D6C9F00AE05B7 /* SearchMoviesPresenter.swift in Sources */,
 				9490535F206ED9BD0003E216 /* LoadingCell.swift in Sources */,
+				94DF99AB206FC4F700611294 /* SDImageCacheConfig.m in Sources */,
 				946AFCA2206D6C9F00AE05B7 /* SearchMoviesViewController.swift in Sources */,
 				946AFC9F206D6C9F00AE05B7 /* SearchMoviesWorker.swift in Sources */,
+				94DF99AA206FC4F700611294 /* NSData+ImageContentType.m in Sources */,
+				94DF99A9206FC4F700611294 /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +701,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aboonajmi.Popcorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Popcorn/Specs/Popcorn-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -654,6 +719,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aboonajmi.Popcorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Popcorn/Specs/Popcorn-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

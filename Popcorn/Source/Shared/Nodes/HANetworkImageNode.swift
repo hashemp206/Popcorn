@@ -13,7 +13,8 @@ class HANetworkImageNode: ASNetworkImageNode
 {
     required init(url: URL? = nil)
     {
-        super.init(cache: nil, downloader: ASBasicImageDownloader.shared())
+        super.init(cache: HAImageCache.sharedInstance, downloader: ASBasicImageDownloader.shared())
+        delegate = HAImageCache.sharedInstance
         placeholderEnabled = true
         placeholderFadeDuration = 0.25
         contentMode = .scaleAspectFill
