@@ -26,15 +26,19 @@ class SearchMoviesInteractor: SearchMoviesBusinessLogic, SearchMoviesDataStore
     var presenter: SearchMoviesPresentationLogic?
     var worker = SearchMoviesWorker()
     
-    // server pagination starts from 1
-    private var page: Int = 1
+    
+    private var page: Int = 0
     private var searchRequest: SearchMovies.Search.Request?
     
     func searchMovies(request: SearchMovies.Search.Request)
     {
         self.searchRequest = request
         // reset paging, because a new search request has initiated
+        // // server pagination starts from 1
         page = 1
+        
+        // ask worker to search for new movies
+        presenter?.presentSearchStarted()
         search(withTerm: request.searchTerm)
     }
     
@@ -49,8 +53,6 @@ class SearchMoviesInteractor: SearchMoviesBusinessLogic, SearchMoviesDataStore
     
     private func search(withTerm term: String)
     {
-        // ask worker to search for new movies
-        presenter?.presentSearchStarted()
         worker.searchMovies(withSearchTerm: term, page: page).then { [weak self] movies -> Void in
             
             // increase page number, so next page request fetch items for the next page

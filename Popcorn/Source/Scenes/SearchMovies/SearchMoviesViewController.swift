@@ -11,6 +11,7 @@
 //
 
 import AsyncDisplayKit
+import Async
 
 private enum SearchMoviesState
 {
@@ -106,9 +107,6 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = true
         }
-        
-        // collectionNode dataSource has been set before. collectionNode has been rendered and displays no item because sections array was empty. if we set sections before, collectionNode will display loadingIndicator, while we have not initiated any search request
-        //sections = [.movies, .activityIndicator]
     }
     
     override func viewDidLayoutSubviews() {
@@ -150,6 +148,21 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         navigationItem.searchController = searchController
     }
     
+    // MARK: Search Movies
+    
+    func search(withSearchTerm term: String)
+    {
+        let request = SearchMovies.Search.Request(searchTerm: term)
+        interactor?.searchMovies(request: request)
+    }
+    
+    var context: ASBatchContext?
+    func requestNextPage(_ context: ASBatchContext)
+    {
+        self.context = context
+        interactor?.fetchNextPage()
+    }
+    
     // MARK: Display Logic
     
     func displaySearchStarted()
@@ -182,13 +195,15 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
                 clearAllRows()
                 
             case .loaded(let movies):
-                print("movies loaded")
                 insertNewRows(movies)
+                
+                // completeBatchFetching must be called with value of true to recieve future batch fetching request calls
+                context?.completeBatchFetching(true)
+                
             case .error(let message):
                 print(message)
+                context?.cancelBatchFetching()
             }
-            
-            // reload collectionNode
         }
     }
     
@@ -211,7 +226,7 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         } else {
             var indexPaths = [IndexPath]()
             let itemsCount = displayedMovies.count
-            for row in itemsCount - displayedMovies.count ..< itemsCount {
+            for row in itemsCount - newItems.count ..< itemsCount {
                 let indexPath = IndexPath(row: row, section: 0)
                 indexPaths.append(indexPath)
             }
@@ -223,7 +238,9 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     fileprivate func clearAllRows()
     {
         displayedMovies.removeAll()
-        collectionNode.reloadData()
+        Async.main {
+            self.collectionNode.reloadData()
+        }
     }
     
     // MARK: Helper
@@ -279,6 +296,26 @@ extension SearchMoviesViewController: ASCollectionDelegateFlowLayout
         // set a flexible size to cells
         return ASSizeRangeMake(CGSize(width: node.width, height: 0), CGSize(width: node.width, height: 500))
     }
+    
+    /// Receive a message that the collection node is near the end of its data set and more data should be fetched if
+    /// this method is called in the background thread
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, willBeginBatchFetchWith context: ASBatchContext) {
+        
+        context.beginBatchFetching()
+        self.requestNextPage(context)
+    }
+    
+    /// Tell the collection node if batch fetching should begin
+    
+    func shouldBatchFetch(for collectionNode: ASCollectionNode) -> Bool {
+        switch state {
+        case .loaded(_):
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 extension SearchMoviesViewController: UISearchBarDelegate
@@ -289,12 +326,6 @@ extension SearchMoviesViewController: UISearchBarDelegate
         if searchBarIsEmpty() == false {
             search(withSearchTerm: searchBar.text!)
         }
-    }
-    
-    func search(withSearchTerm term: String)
-    {
-        let request = SearchMovies.Search.Request(searchTerm: term)
-        interactor?.searchMovies(request: request)
     }
 }
 
