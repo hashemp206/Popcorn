@@ -54,12 +54,15 @@ class MovieNode: ASCellNode {
         // title text shoud not exceed of the cell bounds
         titleNode.style.flexShrink = 1
         
-        // for the left cloum which contains all the text nodes, they are positioned vertically and remaining space is distributed between them
-        let leftColumnSpec = ASStackLayoutSpec(direction: .vertical, spacing: 8, justifyContent: .spaceBetween, alignItems: .stretch, children: [titleDateSpec, descriptionNode])
-        leftColumnSpec.style.flexShrink = 1
+        // for the right cloum which contains all the text nodes, they are positioned vertically and remaining space is distributed between them
+        let rightColumnSpec = ASStackLayoutSpec(direction: .vertical, spacing: 8, justifyContent: .spaceBetween, alignItems: .stretch, children: [titleDateSpec, descriptionNode])
+        // by setting flexShrink to 1, means right column should not exceed cell bounds
+        rightColumnSpec.style.flexShrink = 1
+        // by setting flexGrow to 1, means if right colum is too short, is should expand it self enough to fill the cell
+        rightColumnSpec.style.flexGrow = 1
         
         // now for the main spec, again imaging a row, nodes are positioned horizontally from the left side, and there is 16 point space between those children
-        let mainSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 16, justifyContent: .start, alignItems: .start, children: [posterNode, leftColumnSpec])
+        let mainSpec = ASStackLayoutSpec(direction: .horizontal, spacing: 16, justifyContent: .start, alignItems: .start, children: [posterNode, rightColumnSpec])
         
         // finally we set an 16 point edge inset around main spec
         let mainSpecWithInset = ASInsetLayoutSpec(insets: UIEdgeInsetsMake(16, 16, 16, 16), child: mainSpec)
