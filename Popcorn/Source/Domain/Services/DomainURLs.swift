@@ -11,7 +11,10 @@ import Foundation
 /// we define all the app domain urls in a same file, so we can change them later easily we use enum here, to add other domain cases easily, e.g we can define UserRouter that inlcude all url paths related to the user profile
 enum App {
     static var baseURL: URL {
-        return URL(string: "http://api.themoviedb.org/3")!
+        return URL(string: "http://api.themoviedb.org/3/")!
+    }
+    static var posterBaseURL: URL {
+        return URL(string: "http://image.tmdb.org/t/p/w92")!
     }
     
     static var domain: String {
@@ -34,7 +37,7 @@ extension App.MovieRouter: URLPath
         
         switch self {
         case .search(let query, let page):
-            return "/search/movie?api_key=\(Constants.ApiKey)&query=\(query)&page=\(page)"
+            return "search/movie?api_key=\(Constants.ApiKey)&query=\(query)&page=\(page)"
             
         }
     }
