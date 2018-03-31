@@ -12,7 +12,8 @@
 
 protocol SearchMoviesBusinessLogic
 {
-    
+    func searchMovies(request: SearchMovies.Search.Request)
+    func fetchNextPage()
 }
 
 protocol SearchMoviesDataStore
@@ -23,8 +24,47 @@ protocol SearchMoviesDataStore
 class SearchMoviesInteractor: SearchMoviesBusinessLogic, SearchMoviesDataStore
 {
     var presenter: SearchMoviesPresentationLogic?
-    var worker: SearchMoviesWorker?
+    var worker = SearchMoviesWorker()
     
+    // server pagination starts from 1
+    private var page: Int = 1
+    private var searchRequest: SearchMovies.Search.Request?
     
+    func searchMovies(request: SearchMovies.Search.Request)
+    {
+        self.searchRequest = request
+        // reset paging, because a new search request has initiated
+        page = 1
+        search(withTerm: request.searchTerm)
+    }
+    
+    /// starts fetching movies for the next page
+    
+    func fetchNextPage()
+    {
+        if let searchRequest = searchRequest {
+            search(withTerm: searchRequest.searchTerm)
+        }
+    }
+    
+    private func search(withTerm term: String)
+    {
+        // ask worker to search for new movies
+        presenter?.presentSearchStarted()
+        worker.searchMovies(withSearchTerm: term, page: page).then { [weak self] movies -> Void in
+            
+            // increase page number, so next page request fetch items for the next page
+            self?.page += 1
+            
+            // present fetched movies
+            self?.presenter?.presentSearchedMovies(response: SearchMovies.Search.Response(movies: movies))
+            
+            }.catch { [weak self] error in
+                
+                // an error occured while fetching movies
+                self?.presenter?.presentSearchFailure(response: SearchMovies.SearchFailure.Response(error: error))
+       
+        }
+    }
 }
 

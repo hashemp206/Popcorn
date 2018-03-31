@@ -24,6 +24,16 @@
 		946AFCA1206D6C9F00AE05B7 /* SearchMoviesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC9B206D6C9F00AE05B7 /* SearchMoviesModels.swift */; };
 		946AFCA2206D6C9F00AE05B7 /* SearchMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC9C206D6C9F00AE05B7 /* SearchMoviesViewController.swift */; };
 		946AFCA3206D6C9F00AE05B7 /* SearchMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC9D206D6C9F00AE05B7 /* SearchMoviesInteractor.swift */; };
+		9490535B206ECE990003E216 /* PageMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490535A206ECE990003E216 /* PageMovies.swift */; };
+		9490535D206ED3040003E216 /* ASDisplayNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490535C206ED3040003E216 /* ASDisplayNode+Extensions.swift */; };
+		9490535F206ED9BD0003E216 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490535E206ED9BD0003E216 /* LoadingCell.swift */; };
+		9490536E206F60F20003E216 /* UIView+FrameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490536D206F60F20003E216 /* UIView+FrameHelper.swift */; };
+		94BAC446206E52E600AD5303 /* MovieNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC445206E52E600AD5303 /* MovieNode.swift */; };
+		94BAC44A206E62E600AD5303 /* HANetworkImageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC449206E62E600AD5303 /* HANetworkImageNode.swift */; };
+		94BAC44D206E681000AD5303 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC44C206E681000AD5303 /* ColorPalette.swift */; };
+		94BAC450206E69E700AD5303 /* PosterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC44F206E69E700AD5303 /* PosterNode.swift */; };
+		94BAC452206EBB0A00AD5303 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC451206EBB0A00AD5303 /* UtilityExtensions.swift */; };
+		94DF9994206F806800611294 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF9993206F806800611294 /* UIImage+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +69,16 @@
 		946AFC9B206D6C9F00AE05B7 /* SearchMoviesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesModels.swift; sourceTree = "<group>"; };
 		946AFC9C206D6C9F00AE05B7 /* SearchMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewController.swift; sourceTree = "<group>"; };
 		946AFC9D206D6C9F00AE05B7 /* SearchMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesInteractor.swift; sourceTree = "<group>"; };
+		9490535A206ECE990003E216 /* PageMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMovies.swift; sourceTree = "<group>"; };
+		9490535C206ED3040003E216 /* ASDisplayNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASDisplayNode+Extensions.swift"; sourceTree = "<group>"; };
+		9490535E206ED9BD0003E216 /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		9490536D206F60F20003E216 /* UIView+FrameHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FrameHelper.swift"; sourceTree = "<group>"; };
+		94BAC445206E52E600AD5303 /* MovieNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNode.swift; sourceTree = "<group>"; };
+		94BAC449206E62E600AD5303 /* HANetworkImageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HANetworkImageNode.swift; sourceTree = "<group>"; };
+		94BAC44C206E681000AD5303 /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		94BAC44F206E69E700AD5303 /* PosterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterNode.swift; sourceTree = "<group>"; };
+		94BAC451206EBB0A00AD5303 /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
+		94DF9993206F806800611294 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		F379C4B241833C8705BEFB98 /* Pods-Popcorn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Popcorn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +163,7 @@
 			children = (
 				946AFC81206CDD7600AE05B7 /* Protocols */,
 				946AFC7F206CDD2B00AE05B7 /* Movie.swift */,
+				9490535A206ECE990003E216 /* PageMovies.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,19 +171,11 @@
 		946AFC79206CDAC900AE05B7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				946AFC7A206CDAE900AE05B7 /* Networking */,
+				946AFC84206D1DFD00AE05B7 /* DomainURLs.swift */,
+				946AFC8C206D22EF00AE05B7 /* Networking+Extensions.swift */,
 				946AFC8E206D235300AE05B7 /* PopcornApi.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		946AFC7A206CDAE900AE05B7 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				946AFC84206D1DFD00AE05B7 /* DomainURLs.swift */,
-				946AFC8C206D22EF00AE05B7 /* Networking+Extensions.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		946AFC81206CDD7600AE05B7 /* Protocols */ = {
@@ -176,6 +189,7 @@
 		946AFC86206D1F1000AE05B7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				94BAC44E206E682A00AD5303 /* Extensions */,
 				946AFC87206D1F2800AE05B7 /* Constants.swift */,
 			);
 			path = Helper;
@@ -193,9 +207,10 @@
 		946AFC94206D6B9800AE05B7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				946AFC77206CDA9600AE05B7 /* Domain */,
+				94BAC448206E62C700AD5303 /* Shared */,
 				9446DF99206CCDF3009CBE8C /* AppDelegate.swift */,
 				946AFC96206D6C5300AE05B7 /* Scenes */,
-				946AFC77206CDA9600AE05B7 /* Domain */,
 				946AFC86206D1F1000AE05B7 /* Helper */,
 			);
 			path = Source;
@@ -220,6 +235,7 @@
 		946AFC97206D6C7200AE05B7 /* SearchMovies */ = {
 			isa = PBXGroup;
 			children = (
+				94BAC444206E4DF500AD5303 /* View */,
 				946AFC98206D6C9F00AE05B7 /* SearchMoviesPresenter.swift */,
 				946AFC99206D6C9F00AE05B7 /* SearchMoviesWorker.swift */,
 				946AFC9A206D6C9F00AE05B7 /* SearchMoviesRouter.swift */,
@@ -228,6 +244,44 @@
 				946AFC9D206D6C9F00AE05B7 /* SearchMoviesInteractor.swift */,
 			);
 			path = SearchMovies;
+			sourceTree = "<group>";
+		};
+		94BAC444206E4DF500AD5303 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				94BAC445206E52E600AD5303 /* MovieNode.swift */,
+				94BAC44F206E69E700AD5303 /* PosterNode.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		94BAC448206E62C700AD5303 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				94BAC44B206E62EA00AD5303 /* Nodes */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		94BAC44B206E62EA00AD5303 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				9490535E206ED9BD0003E216 /* LoadingCell.swift */,
+				94BAC449206E62E600AD5303 /* HANetworkImageNode.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		94BAC44E206E682A00AD5303 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94BAC44C206E681000AD5303 /* ColorPalette.swift */,
+				9490536D206F60F20003E216 /* UIView+FrameHelper.swift */,
+				94BAC451206EBB0A00AD5303 /* UtilityExtensions.swift */,
+				94DF9993206F806800611294 /* UIImage+Extensions.swift */,
+				9490535C206ED3040003E216 /* ASDisplayNode+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B2B5484F2C53DA2AA002BD78 /* Frameworks */ = {
@@ -380,6 +434,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AsyncSwift/Async.framework",
+				"${BUILT_PRODUCTS_DIR}/AttributedLib/AttributedLib.framework",
 				"${BUILT_PRODUCTS_DIR}/Networking/Networking.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
@@ -394,6 +449,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Async.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AttributedLib.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Networking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
@@ -419,15 +475,25 @@
 			files = (
 				946AFC85206D1DFD00AE05B7 /* DomainURLs.swift in Sources */,
 				946AFCA3206D6C9F00AE05B7 /* SearchMoviesInteractor.swift in Sources */,
+				94BAC452206EBB0A00AD5303 /* UtilityExtensions.swift in Sources */,
+				94BAC446206E52E600AD5303 /* MovieNode.swift in Sources */,
 				946AFC83206CDD9800AE05B7 /* Codable+Utils.swift in Sources */,
 				9446DF9A206CCDF3009CBE8C /* AppDelegate.swift in Sources */,
 				946AFCA0206D6C9F00AE05B7 /* SearchMoviesRouter.swift in Sources */,
 				946AFC80206CDD2B00AE05B7 /* Movie.swift in Sources */,
+				9490535B206ECE990003E216 /* PageMovies.swift in Sources */,
 				946AFCA1206D6C9F00AE05B7 /* SearchMoviesModels.swift in Sources */,
+				94BAC450206E69E700AD5303 /* PosterNode.swift in Sources */,
 				946AFC88206D1F2800AE05B7 /* Constants.swift in Sources */,
 				946AFC8F206D235300AE05B7 /* PopcornApi.swift in Sources */,
+				94BAC44A206E62E600AD5303 /* HANetworkImageNode.swift in Sources */,
+				94BAC44D206E681000AD5303 /* ColorPalette.swift in Sources */,
 				946AFC8D206D22EF00AE05B7 /* Networking+Extensions.swift in Sources */,
+				94DF9994206F806800611294 /* UIImage+Extensions.swift in Sources */,
+				9490535D206ED3040003E216 /* ASDisplayNode+Extensions.swift in Sources */,
+				9490536E206F60F20003E216 /* UIView+FrameHelper.swift in Sources */,
 				946AFC9E206D6C9F00AE05B7 /* SearchMoviesPresenter.swift in Sources */,
+				9490535F206ED9BD0003E216 /* LoadingCell.swift in Sources */,
 				946AFCA2206D6C9F00AE05B7 /* SearchMoviesViewController.swift in Sources */,
 				946AFC9F206D6C9F00AE05B7 /* SearchMoviesWorker.swift in Sources */,
 			);
@@ -567,6 +633,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 376D2TW5A5;
 				INFOPLIST_FILE = "$(SRCROOT)/Popcorn/Specs/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aboonajmi.Popcorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -583,6 +650,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 376D2TW5A5;
 				INFOPLIST_FILE = "$(SRCROOT)/Popcorn/Specs/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aboonajmi.Popcorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";

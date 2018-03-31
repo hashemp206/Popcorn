@@ -12,9 +12,16 @@
 
 import AsyncDisplayKit
 
+private enum SearchMoviesState
+{
+    case `default`, loading, loaded(movies: [SearchMovies.Search.ViewModel.DisplayMovie]), error(message: String)
+}
+
 protocol SearchMoviesDisplayLogic: class
 {
-    
+    func displaySearchedMovies(viewModel: SearchMovies.Search.ViewModel)
+    func displaySearchFailure(viewModel: SearchMovies.SearchFailure.ViewModel)
+    func displaySearchStarted()
 }
 
 class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesDisplayLogic
@@ -22,13 +29,37 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     var interactor: SearchMoviesBusinessLogic?
     var router: (NSObjectProtocol & SearchMoviesRoutingLogic & SearchMoviesDataPassing)?
     
+    // set a type alias for DisplayMovie to reduce verbosity
+    typealias Movie = SearchMovies.Search.ViewModel.DisplayMovie
+    var displayedMovies = [Movie]()
+    
+    // at first there is no section. view only displays a search bar.
+    var sections : [SearchMovies.Section] = [.movies, .activityIndicator]
+    
+    // By initializing UISearchController with a nil value for the searchResultsController, you tell the search controller that you want use the same view you’re searching to display the results
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    let collectionNode: ASCollectionNode
+    
     // MARK: Object lifecycle
     
     init()
     {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        
+        collectionNode = ASCollectionNode(collectionViewLayout: layout)
+        
         let displayNode = ASDisplayNode()
+        displayNode.addSubnode(collectionNode)
         
         super.init(node: displayNode)
+        setup()
+        
+        // set collectionNode delegate and dataSource
+        collectionNode.delegate = self
+        collectionNode.dataSource = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,12 +89,214 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
+        customizeUI()
+        setupSearchController()
     }
     
-    // MARK: Routing
+    // The following makes the scroll bar visible at first, then allows it to hide when scrolling:
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 11.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = true
+        }
+        
+        // collectionNode dataSource has been set before. collectionNode has been rendered and displays no item because sections array was empty. if we set sections before, collectionNode will display loadingIndicator, while we have not initiated any search request
+        //sections = [.movies, .activityIndicator]
+    }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionNode.frame = view.bounds
+    }
+    // MARK: UI Customiziation
+    
+    func customizeUI()
+    {
+        // make collectionNode always bounce vertically
+        collectionNode.view.alwaysBounceVertical = true
+        // by default collectionNode is hidden
+        collectionNode.isHidden = true
+        // set backgroundColor. default is black
+        node.backgroundColor = .white
+        
+        // customize navigationBar
+        title = "Popcorn"
+        // display large title in navigationBar
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    // MARK: Setup UISearchController
+    
+    func setupSearchController()
+    {
+
+        // by default searchController obscure the view it is presented over, because we use the current view to display result, so we disbale it
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        // set searchBar delegate to self. we want to know when user has pressed the search button to init search request
+        searchController.searchBar.delegate = self
+        
+        // set searchBar placeholder
+        searchController.searchBar.placeholder = "Search Movies"
+        
+        // add search bar to navigationItem by assigning searchController to navigationItem searchController property
+        navigationItem.searchController = searchController
+    }
+    
+    // MARK: Display Logic
+    
+    func displaySearchStarted()
+    {
+        state = .loading
+    }
+    
+    func displaySearchedMovies(viewModel: SearchMovies.Search.ViewModel)
+    {
+        state = .loaded(movies: viewModel.displayedMovies)
+    }
+    
+    func displaySearchFailure(viewModel: SearchMovies.SearchFailure.ViewModel)
+    {
+        state = .error(message: viewModel.message)
+    }
+    
+    // MARK: States
+    
+    fileprivate var state: SearchMoviesState = .default {
+        didSet {
+            switch state {
+            case .default:
+                print("default state")
+               
+                
+            case .loading:
+                print("loading")
+                collectionNode.isHidden = false
+                clearAllRows()
+                
+            case .loaded(let movies):
+                print("movies loaded")
+                insertNewRows(movies)
+            case .error(let message):
+                print(message)
+            }
+            
+            // reload collectionNode
+        }
+    }
+    
+    fileprivate func insertNewRows(_ newItems: [Movie]){
+        
+        if newItems.isEmpty {
+            if let loadingSection = sections.index(of: .activityIndicator) {
+                sections.remove(at: loadingSection)
+                collectionNode.deleteSections(IndexSet(integer: loadingSection))
+            }
+        }
+        
+        // update data source
+        displayedMovies.append(contentsOf: newItems)
+        
+        if displayedMovies.isEmpty {
+            // no result found
+            
+            
+        } else {
+            var indexPaths = [IndexPath]()
+            let itemsCount = displayedMovies.count
+            for row in itemsCount - displayedMovies.count ..< itemsCount {
+                let indexPath = IndexPath(row: row, section: 0)
+                indexPaths.append(indexPath)
+            }
+            
+            collectionNode.insertItems(at: indexPaths)
+        }
+    }
+    
+    fileprivate func clearAllRows()
+    {
+        displayedMovies.removeAll()
+        collectionNode.reloadData()
+    }
+    
+    // MARK: Helper
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
 }
+
+extension SearchMoviesViewController: ASCollectionDataSource
+{
+    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
+        return sections.count
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return displayedMovies.count
+        case 1:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
+    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
+        let row = indexPath.row
+        let section = indexPath.section
+        
+        return { [weak self] in
+            
+            guard let `self` = self else {
+                return ASCellNode()
+            }
+            
+            if section == 0 {
+                
+                let movie = self.displayedMovies[row]
+                return MovieNode(movie: movie)
+                
+            } else {
+                return LoadingCell()
+            }
+        }
+    }
+}
+
+extension SearchMoviesViewController: ASCollectionDelegateFlowLayout
+{
+    func collectionNode(_ collectionNode: ASCollectionNode, constrainedSizeForItemAt indexPath: IndexPath) -> ASSizeRange {
+        
+        // set a flexible size to cells
+        return ASSizeRangeMake(CGSize(width: node.width, height: 0), CGSize(width: node.width, height: 500))
+    }
+}
+
+extension SearchMoviesViewController: UISearchBarDelegate
+{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if searchBarIsEmpty() == false {
+            search(withSearchTerm: searchBar.text!)
+        }
+    }
+    
+    func search(withSearchTerm term: String)
+    {
+        let request = SearchMovies.Search.Request(searchTerm: term)
+        interactor?.searchMovies(request: request)
+    }
+}
+
+
 

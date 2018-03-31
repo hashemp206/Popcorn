@@ -9,21 +9,50 @@
 //  you can apply clean architecture to your iOS and Mac projects,
 //  see http://clean-swift.com
 //
+import Foundation
 
 enum SearchMovies
 {
+    enum Section: Int {
+        case movies
+        case activityIndicator
+    }
+    
     // MARK: Use cases
     
-    enum Something
+    enum Search
     {
         struct Request
         {
+            let searchTerm: String
         }
         struct Response
         {
+            let movies: [Movie]
         }
         struct ViewModel
         {
+            // We seperate display model from domain model, by defining a view model
+            struct DisplayMovie {
+                let id: Int
+                let title: String
+                let posterURL: URL?
+                let releaseDate: String
+                let description: String
+            }
+            
+            let displayedMovies: [DisplayMovie]
+        }
+    }
+    
+    enum SearchFailure
+    {
+        struct Response {
+            let error: Error
+        }
+        
+        struct ViewModel {
+            let message: String
         }
     }
 }

@@ -10,9 +10,17 @@
 //  see http://clean-swift.com
 //
 
+import PromiseKit
 
 class SearchMoviesWorker
 {
+    let popcornApi = PopcornApi()
     
+    func searchMovies(withSearchTerm searchTerm: String, page: Int) -> Promise<[Movie]>
+    {
+        return wrap {
+            popcornApi.search(withQuery: searchTerm, page: page, completion: $0)
+        }
+    }
 }
 
