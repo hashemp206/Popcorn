@@ -16,5 +16,6 @@ pod 'Networking', :git => 'https://github.com/3lvis/Networking.git'
 pod 'PromiseKit', '~> 4.4'
 pod 'PluggableApplicationDelegate'
 pod 'AsyncSwift'
+pod 'AttributedLib'
 
 end

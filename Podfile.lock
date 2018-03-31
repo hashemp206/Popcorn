@@ -1,5 +1,6 @@
 PODS:
   - AsyncSwift (2.0.4)
+  - AttributedLib (2.0.2)
   - Networking (4.2.0)
   - PINCache (3.0.1-beta.6):
     - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
@@ -46,6 +47,7 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift
+  - AttributedLib
   - Networking (from `https://github.com/3lvis/Networking.git`)
   - PluggableApplicationDelegate
   - PMKVObserver (~> 2.0)
@@ -65,6 +67,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AsyncSwift: 65775a7b32e740609b24969ece3de58723b9dc3e
+  AttributedLib: 655a8a321043410ee616e2f64a0db62e17743127
   Networking: df6df7dbd660a2ba4fa7a1981a2c0d2b4ec315e2
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: 7f042fa6df5b606deb4bd5997654cf7033d5be1d
@@ -76,6 +79,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   Texture: 7249074582daf75e524e59df5428b66b8e8db0e4
 
-PODFILE CHECKSUM: 3ae497b3d712745f4dda55ee1ee92a00b544e0ca
+PODFILE CHECKSUM: acaf884cb526ae6e072040f5c3a6dfd89efb1a9c
 
 COCOAPODS: 1.4.0
