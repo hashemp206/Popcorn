@@ -17,7 +17,7 @@ class PopcornApi {
             case .success(let response):
                 
                 do {
-                    let movies = try [Movie].decode(from: response.data)
+                    let movies = try PagedMovies.decode(from: response.data).movies
                     completion(movies, nil)
                     
                 } catch {
