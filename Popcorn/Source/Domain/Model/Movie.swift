@@ -9,16 +9,13 @@
 import Foundation
 
 
-struct Movie: Codable {
+struct Movie: Decodable {
     
     let id: Int
     let title: String
-    let posterURL: URL?
     let releaseDate: Date
     let description: String
-    
-    // poster_path is not usable, using this private property to construct posterURL
-    private let poster_path: String
+    let poster_path: String?
     
     enum CodingKeys: String, CodingKey {
         case id, title = "original_title", poster_path, releaseDate = "release_date", description = "overview"
@@ -32,10 +29,19 @@ extension Movie {
         
         id = try values.decode(Int.self, forKey: .id)
         title = try values.decode(String.self, forKey: .title)
-        poster_path = try values.decode(String.self, forKey: .poster_path)
-        posterURL = URL(string: App.baseURL.absoluteString + poster_path)
-        releaseDate = try values.decode(Date.self, forKey: .releaseDate)
+        poster_path = try values.decode(String?.self, forKey: .poster_path)
         description = try values.decode(String.self, forKey: .description)
+        
+        let dateString = try values.decode(String.self, forKey: .releaseDate)
+        // we use custom date formatter for decoding dates like yyyy-MM-dd
+        let formatter = DateFormatter.yyyyMMdd
+        if let date = formatter.date(from: dateString) {
+            releaseDate = date
+        } else {
+            throw DecodingError.dataCorruptedError(forKey: .releaseDate,
+                                                   in: values,
+                                                   debugDescription: "Date string does not match format expected by formatter.")
+        }
     }
 }
 
