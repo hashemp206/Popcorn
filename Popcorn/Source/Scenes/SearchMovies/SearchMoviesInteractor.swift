@@ -74,11 +74,7 @@ class SearchMoviesInteractor: SearchMoviesBusinessLogic, SearchMoviesDataStore
     {
         worker.fetchRecentSearches().then { [weak self] recentSearches -> Void in
             self?.presenter?.presentRecentSearches(response: SearchMovies.FetchRecentSearches.Response(recentSearches: recentSearches))
-            }.catch {
-                
-                print($0)
-                
-        }
+            }
     }
 }
 

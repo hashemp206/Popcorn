@@ -45,6 +45,7 @@
 		94DF99B92070060E00611294 /* StatusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99B82070060E00611294 /* StatusNode.swift */; };
 		94DF99BD2070C46300611294 /* SuggestionsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99BC2070C46300611294 /* SuggestionsNode.swift */; };
 		94DF99BF2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */; };
+		94DF99C1207155B700611294 /* SearchMoviesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99C0207155B700611294 /* SearchMoviesDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		94DF99B82070060E00611294 /* StatusNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusNode.swift; sourceTree = "<group>"; };
 		94DF99BC2070C46300611294 /* SuggestionsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsNode.swift; sourceTree = "<group>"; };
 		94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesUserDefaultsStore.swift; sourceTree = "<group>"; };
+		94DF99C0207155B700611294 /* SearchMoviesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesDataSource.swift; sourceTree = "<group>"; };
 		F379C4B241833C8705BEFB98 /* Pods-Popcorn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Popcorn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +277,7 @@
 				946AFC9B206D6C9F00AE05B7 /* SearchMoviesModels.swift */,
 				946AFC9C206D6C9F00AE05B7 /* SearchMoviesViewController.swift */,
 				946AFC9D206D6C9F00AE05B7 /* SearchMoviesInteractor.swift */,
+				94DF99C0207155B700611294 /* SearchMoviesDataSource.swift */,
 			);
 			path = SearchMovies;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				94DF99B92070060E00611294 /* StatusNode.swift in Sources */,
 				946AFCA2206D6C9F00AE05B7 /* SearchMoviesViewController.swift in Sources */,
 				946AFC9F206D6C9F00AE05B7 /* SearchMoviesWorker.swift in Sources */,
+				94DF99C1207155B700611294 /* SearchMoviesDataSource.swift in Sources */,
 				94DF99AA206FC4F700611294 /* NSData+ImageContentType.m in Sources */,
 				94DF99A9206FC4F700611294 /* SDImageCache.m in Sources */,
 			);

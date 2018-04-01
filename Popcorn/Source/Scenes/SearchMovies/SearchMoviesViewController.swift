@@ -33,10 +33,7 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     
     // set a type alias for DisplayMovie to reduce verbosity
     typealias Movie = SearchMovies.Search.ViewModel.DisplayMovie
-    var displayedMovies = [Movie]()
     
-    // at first there is no section. view only displays a search bar.
-    var sections : [SearchMovies.Section] = [.movies, .activityIndicator]
     
     // By initializing UISearchController with a nil value for the searchResultsController, you tell the search controller that you want use the same view you’re searching to display the results
     let searchController = UISearchController(searchResultsController: nil)
@@ -44,7 +41,10 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     let collectionNode: ASCollectionNode
     var statusNode: StatusNode?
     let suggestionsNode = SuggestionsNode()
+    
+    let dataSource = SearchMoviesDataSource()
     private var initialSafeAreaInsetTop: CGFloat = 0
+    
     // MARK: Object lifecycle
     
     init()
@@ -63,7 +63,7 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         
         // set collectionNode delegate and dataSource
         collectionNode.delegate = self
-        collectionNode.dataSource = self
+        collectionNode.dataSource = dataSource
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -208,7 +208,7 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
                 show(status: status)
                 
                 //  for the first time when there is no result if we hit cancel button in the search bar, collectionNode doesn't move to corrct offset
-                if displayedMovies.isEmpty == false {
+                if dataSource.isEmpty == false {
                     collectionNode.setContentOffset(CGPoint(x: 0, y: -initialSafeAreaInsetTop), animated: true)
                 }
                 
@@ -255,37 +255,30 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     fileprivate func insertNewRows(_ newItems: [Movie]){
         
         if newItems.isEmpty {
-            if let loadingSection = sections.index(of: .activityIndicator) {
-                sections.remove(at: loadingSection)
-                collectionNode.deleteSections(IndexSet(integer: loadingSection))
+            if let deletedSectionIndex = dataSource.deleteSection(.activityIndicator)
+            {
+                collectionNode.deleteSections(IndexSet(integer: deletedSectionIndex))
             }
         }
         
         // update data source
-        displayedMovies.append(contentsOf: newItems)
+        let insertedItemsIndexPaths = dataSource.insertNewItems(newItems)
         
-        if displayedMovies.isEmpty {
+        if dataSource.isEmpty {
             // no result found
             let searchTerm = searchController.searchBar.text!
             let status = StatusModel(title: "Oops! we couldn’t find “\(searchTerm)”", image: #imageLiteral(resourceName: "sad"))
             show(status: status)
             
         } else {
-            var indexPaths = [IndexPath]()
-            let itemsCount = displayedMovies.count
-            for row in itemsCount - newItems.count ..< itemsCount {
-                let indexPath = IndexPath(row: row, section: 0)
-                indexPaths.append(indexPath)
-            }
             
-            collectionNode.insertItems(at: indexPaths)
+            collectionNode.insertItems(at: insertedItemsIndexPaths)
         }
     }
     
     fileprivate func clearAllRows()
     {
-        displayedMovies.removeAll()
-        
+        dataSource.clear()
         // this function must called on the main thread
         Async.main {
             self.collectionNode.reloadData()
@@ -357,7 +350,6 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     {
         // we start hiding suggestionNode after the next run loop
         // because initially transitionCoordinator is nil
-        
         Async.main {
             if let transitionCoordinator = self.searchController.transitionCoordinator {
                 // animate suggestionsNode alognside searchController transition
@@ -376,45 +368,6 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
                 }, completion: { _ in
                     self.suggestionsNode.removeFromSupernode()
                 })
-            }
-        }
-    }
-}
-
-extension SearchMoviesViewController: ASCollectionDataSource
-{
-    func numberOfSections(in collectionNode: ASCollectionNode) -> Int {
-        return sections.count
-    }
-    
-    func collectionNode(_ collectionNode: ASCollectionNode, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return displayedMovies.count
-        case 1:
-            return 1
-        default:
-            return 0
-        }
-    }
-    
-    func collectionNode(_ collectionNode: ASCollectionNode, nodeBlockForItemAt indexPath: IndexPath) -> ASCellNodeBlock {
-        let row = indexPath.row
-        let section = indexPath.section
-        
-        return { [weak self] in
-            
-            guard let `self` = self else {
-                return ASCellNode()
-            }
-            
-            if section == 0 {
-                
-                let movie = self.displayedMovies[row]
-                return MovieNode(movie: movie)
-                
-            } else {
-                return LoadingCell()
             }
         }
     }
@@ -452,9 +405,7 @@ extension SearchMoviesViewController: ASCollectionDelegateFlowLayout
 
 extension SearchMoviesViewController: UISearchControllerDelegate
 {
-    func willDismissSearchController(_ searchController: UISearchController) {
-        hideSuggestions()
-    }
+    
 }
 
 extension SearchMoviesViewController: UISearchBarDelegate
@@ -477,6 +428,7 @@ extension SearchMoviesViewController: UISearchBarDelegate
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         state = .default
+        hideSuggestions()
     }
     
     func startSearch()
@@ -485,8 +437,8 @@ extension SearchMoviesViewController: UISearchBarDelegate
         self.view.endEditing(true)
         
         // after a complete search paging, activityIndicator section will be removed to indicate user scrolled all the search results. for new search is this section is removed we appened it again
-        if sections.index(of: .activityIndicator) == nil {
-            sections.append(.activityIndicator)
+        if dataSource.hasSection(.activityIndicator) == false {
+            dataSource.insertSection(.activityIndicator)
         }
         
         let searchBar = searchController.searchBar
