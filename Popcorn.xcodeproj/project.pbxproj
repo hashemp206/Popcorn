@@ -43,6 +43,8 @@
 		94DF99AB206FC4F700611294 /* SDImageCacheConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99A1206FC4F700611294 /* SDImageCacheConfig.m */; };
 		94DF99B1206FCE1D00611294 /* HAImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99B0206FCE1C00611294 /* HAImageCache.swift */; };
 		94DF99B92070060E00611294 /* StatusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99B82070060E00611294 /* StatusNode.swift */; };
+		94DF99BD2070C46300611294 /* SuggestionsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99BC2070C46300611294 /* SuggestionsNode.swift */; };
+		94DF99BF2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		94DF99AF206FCD3F00611294 /* Popcorn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Popcorn-Bridging-Header.h"; sourceTree = "<group>"; };
 		94DF99B0206FCE1C00611294 /* HAImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HAImageCache.swift; sourceTree = "<group>"; };
 		94DF99B82070060E00611294 /* StatusNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusNode.swift; sourceTree = "<group>"; };
+		94DF99BC2070C46300611294 /* SuggestionsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsNode.swift; sourceTree = "<group>"; };
+		94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesUserDefaultsStore.swift; sourceTree = "<group>"; };
 		F379C4B241833C8705BEFB98 /* Pods-Popcorn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Popcorn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +204,7 @@
 				946AFC84206D1DFD00AE05B7 /* DomainURLs.swift */,
 				946AFC8C206D22EF00AE05B7 /* Networking+Extensions.swift */,
 				946AFC8E206D235300AE05B7 /* PopcornApi.swift */,
+				94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 		94BAC444206E4DF500AD5303 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				94DF99BC2070C46300611294 /* SuggestionsNode.swift */,
 				94BAC445206E52E600AD5303 /* MovieNode.swift */,
 				94BAC44F206E69E700AD5303 /* PosterNode.swift */,
 				94DF99BA20700A9A00611294 /* ErrorStatuses */,
@@ -540,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DF99BD2070C46300611294 /* SuggestionsNode.swift in Sources */,
 				94DF99A7206FC4F700611294 /* UIImage+MultiFormat.m in Sources */,
 				946AFC85206D1DFD00AE05B7 /* DomainURLs.swift in Sources */,
 				946AFCA3206D6C9F00AE05B7 /* SearchMoviesInteractor.swift in Sources */,
@@ -563,6 +570,7 @@
 				946AFC8D206D22EF00AE05B7 /* Networking+Extensions.swift in Sources */,
 				94DF9994206F806800611294 /* UIImage+Extensions.swift in Sources */,
 				9490535D206ED3040003E216 /* ASDisplayNode+Extensions.swift in Sources */,
+				94DF99BF2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift in Sources */,
 				9490536E206F60F20003E216 /* UIView+FrameHelper.swift in Sources */,
 				946AFC9E206D6C9F00AE05B7 /* SearchMoviesPresenter.swift in Sources */,
 				9490535F206ED9BD0003E216 /* LoadingCell.swift in Sources */,

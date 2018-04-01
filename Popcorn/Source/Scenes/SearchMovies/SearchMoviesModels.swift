@@ -58,5 +58,16 @@ enum SearchMovies
             let reason: Reason
         }
     }
+    
+    enum FetchRecentSearches {
+        
+        struct Response {
+            let recentSearches: [String]
+        }
+        
+        struct ViewModel {
+            let recentSearches: [String]
+        }
+    }
 }
 

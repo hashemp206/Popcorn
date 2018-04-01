@@ -14,6 +14,7 @@ protocol SearchMoviesBusinessLogic
 {
     func searchMovies(request: SearchMovies.Search.Request)
     func fetchNextPage()
+    func fetchRecentSearches()
 }
 
 protocol SearchMoviesDataStore
@@ -66,6 +67,17 @@ class SearchMoviesInteractor: SearchMoviesBusinessLogic, SearchMoviesDataStore
                 // an error occured while fetching movies
                 self?.presenter?.presentSearchFailure(response: SearchMovies.SearchFailure.Response(error: error))
        
+        }
+    }
+    
+    func fetchRecentSearches()
+    {
+        worker.fetchRecentSearches().then { [weak self] recentSearches -> Void in
+            self?.presenter?.presentRecentSearches(response: SearchMovies.FetchRecentSearches.Response(recentSearches: recentSearches))
+            }.catch {
+                
+                print($0)
+                
         }
     }
 }

@@ -11,16 +11,42 @@
 //
 
 import PromiseKit
+import SwiftyUserDefaults
 
 class SearchMoviesWorker
 {
     let popcornApi = PopcornApi()
+    let recentSearchesStore: RecentSearchesStoreProtocol
+    
+    init() {
+        recentSearchesStore = RecentSearchesUserDefaultsStore()
+    }
     
     func searchMovies(withSearchTerm searchTerm: String, page: Int) -> Promise<[Movie]>
     {
         return wrap {
             popcornApi.search(withQuery: searchTerm, page: page, completion: $0)
+            }.then { [weak self] movies -> Promise<[Movie]> in
+                
+                if page == 1 {
+                    // store new successfull search term
+                    self?.store(newSearchTerm: searchTerm)
+                }
+                return Promise(value: movies)
         }
+    }
+    
+    func fetchRecentSearches() -> Promise<[String]>
+    {
+        return wrap {
+            recentSearchesStore.fetchRecentSearches(completionHandler: $0)
+        }
+    }
+    
+    
+    private func store(newSearchTerm term: String)
+    {
+        recentSearchesStore.insert(newSearchTerm: term)
     }
 }
 

@@ -7,7 +7,13 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 
 struct Constants {
     static let ApiKey: String = "2696829a81b1b5827d515ff121700838"
+}
+
+extension DefaultsKeys {
+    static let recentSearches          = DefaultsKey<[String]?>("recentSearches")
+
 }

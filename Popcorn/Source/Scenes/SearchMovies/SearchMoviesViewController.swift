@@ -23,6 +23,7 @@ protocol SearchMoviesDisplayLogic: class
     func displaySearchedMovies(viewModel: SearchMovies.Search.ViewModel)
     func displaySearchFailure(viewModel: SearchMovies.SearchFailure.ViewModel)
     func displaySearchStarted()
+    func displayRecentSearches(viewModel: SearchMovies.FetchRecentSearches.ViewModel)
 }
 
 class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesDisplayLogic
@@ -42,7 +43,8 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     
     let collectionNode: ASCollectionNode
     var statusNode: StatusNode?
-    
+    let suggestionsNode = SuggestionsNode()
+    private var initialSafeAreaInsetTop: CGFloat = 0
     // MARK: Object lifecycle
     
     init()
@@ -110,6 +112,14 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         super.viewDidLayoutSubviews()
         collectionNode.frame = view.bounds
     }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        if initialSafeAreaInsetTop == 0 {
+            initialSafeAreaInsetTop = view.safeAreaInsets.top
+        }
+    }
+    
     // MARK: UI Customiziation
     
     func customizeUI()
@@ -134,9 +144,11 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     
     func setupSearchController()
     {
-
         // by default searchController obscure the view it is presented over, because we use the current view to display result, so we disbale it
         searchController.obscuresBackgroundDuringPresentation = false
+        
+        // we want to know when searchController will present or dismissed
+        searchController.delegate = self
         
         // set searchBar delegate to self. we want to know when user has pressed the search button to init search request
         searchController.searchBar.delegate = self
@@ -180,6 +192,11 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         state = .error(reason: viewModel.reason)
     }
     
+    func displayRecentSearches(viewModel: SearchMovies.FetchRecentSearches.ViewModel)
+    {
+        show(recentSearches: viewModel.recentSearches)
+    }
+    
     // MARK: States
     
     fileprivate var state: SearchMoviesState = .default {
@@ -190,8 +207,17 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
                 let status = StatusModel(title: "Search your favorites movies", image: #imageLiteral(resourceName: "logo"))
                 show(status: status)
                 
+                //  for the first time when there is no result if we hit cancel button in the search bar, collectionNode doesn't move to corrct offset
+                if displayedMovies.isEmpty == false {
+                    collectionNode.setContentOffset(CGPoint(x: 0, y: -initialSafeAreaInsetTop), animated: true)
+                }
+                
             case .loading:
                 
+                // hide suggestions node, if visible
+                hideSuggestions()
+                
+                // hide status node, if visible
                 statusNode?.removeFromSupernode()
                 collectionNode.isHidden = false
                 clearAllRows()
@@ -216,8 +242,6 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
                     
                 case .error(let message):
                     print(message)
-                    // hide keyboard, if visible
-                    self.view.endEditing(true)
                     
                     let status = StatusModel(title: "Oops! an error occured", image: #imageLiteral(resourceName: "warning"), actionTitle: "Retry") { [unowned self] in
                         self.startSearch()
@@ -261,6 +285,8 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
     fileprivate func clearAllRows()
     {
         displayedMovies.removeAll()
+        
+        // this function must called on the main thread
         Async.main {
             self.collectionNode.reloadData()
         }
@@ -283,6 +309,75 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         node.addSubnode(statusNode)
         
         self.statusNode = statusNode
+        
+    }
+    
+    fileprivate func show(recentSearches searches: [String])
+    {
+        // assign recent searches to suggestionNode
+        suggestionsNode.suggestions = searches
+        
+        // set frame and position of suggestionsNode
+        let topInset = view.safeAreaInsets.top
+        suggestionsNode.frame = view.bounds
+        suggestionsNode.top = topInset
+        
+        // suggestionsNode should initially be hidden
+        suggestionsNode.alpha = 0
+        node.addSubnode(suggestionsNode)
+        
+        // by tapping on a search term, a new search request will trigger
+        suggestionsNode.onItemSelection = { [unowned self] searchTerm in
+            
+            self.searchController.searchBar.text = searchTerm
+            self.searchController.searchBar.resignFirstResponder()
+            self.search(withSearchTerm: searchTerm)
+        }
+        
+        if let transitionCoordinator = searchController.transitionCoordinator
+        {
+            // animate suggestionsNode alognside searchController transition
+            transitionCoordinator.animate(alongsideTransition: { [unowned self] context in
+                let statusBarHeight = UIApplication.shared.statusBarFrame.height
+                let searchBarHeight = self.searchController.searchBar.height
+                self.suggestionsNode.alpha = 1
+                self.suggestionsNode.top = statusBarHeight + searchBarHeight
+                }, completion: nil)
+        } else {
+            
+            // if transitionCoordinator is nil means searchController is already presented. so we display suggestionsNode with a basic animation
+            UIView.animate(withDuration: 0.2, animations: {
+                self.suggestionsNode.alpha = 1
+            })
+        }
+       
+    }
+    
+    fileprivate func hideSuggestions()
+    {
+        // we start hiding suggestionNode after the next run loop
+        // because initially transitionCoordinator is nil
+        
+        Async.main {
+            if let transitionCoordinator = self.searchController.transitionCoordinator {
+                // animate suggestionsNode alognside searchController transition
+                transitionCoordinator.animate(alongsideTransition: { context in
+                    self.suggestionsNode.alpha = 0
+                    self.suggestionsNode.top = self.initialSafeAreaInsetTop
+                }, completion: { _ in
+                    self.suggestionsNode.removeFromSupernode()
+                })
+                
+            } else {
+                
+                // if transitionCoordinator after next runloop is still nil, we should hide it with basic animation
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.suggestionsNode.alpha = 0
+                }, completion: { _ in
+                    self.suggestionsNode.removeFromSupernode()
+                })
+            }
+        }
     }
 }
 
@@ -345,24 +440,50 @@ extension SearchMoviesViewController: ASCollectionDelegateFlowLayout
     /// Tell the collection node if batch fetching should begin
     
     func shouldBatchFetch(for collectionNode: ASCollectionNode) -> Bool {
+        
         switch state {
         case .loaded(_):
-            return true
+            return searchBarIsEmpty() == false 
         default:
             return false
         }
     }
 }
 
+extension SearchMoviesViewController: UISearchControllerDelegate
+{
+    func willDismissSearchController(_ searchController: UISearchController) {
+        hideSuggestions()
+    }
+}
+
 extension SearchMoviesViewController: UISearchBarDelegate
 {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        if searchBarIsEmpty() {
+            interactor?.fetchRecentSearches()
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        interactor?.fetchRecentSearches()
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         startSearch()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        state = .default
+    }
+    
     func startSearch()
     {
+        // hide keyboard, if visible
+        self.view.endEditing(true)
+        
         // after a complete search paging, activityIndicator section will be removed to indicate user scrolled all the search results. for new search is this section is removed we appened it again
         if sections.index(of: .activityIndicator) == nil {
             sections.append(.activityIndicator)

@@ -16,6 +16,7 @@ protocol SearchMoviesPresentationLogic
     func presentSearchedMovies(response: SearchMovies.Search.Response)
     func presentSearchFailure(response: SearchMovies.SearchFailure.Response)
     func presentSearchStarted()
+    func presentRecentSearches(response: SearchMovies.FetchRecentSearches.Response)
 }
 
 class SearchMoviesPresenter: SearchMoviesPresentationLogic
@@ -67,6 +68,11 @@ class SearchMoviesPresenter: SearchMoviesPresentationLogic
         }
         
         viewController?.displaySearchFailure(viewModel: SearchMovies.SearchFailure.ViewModel(reason: reason))
+    }
+    
+    func presentRecentSearches(response: SearchMovies.FetchRecentSearches.Response)
+    {
+        viewController?.displayRecentSearches(viewModel: SearchMovies.FetchRecentSearches.ViewModel(recentSearches: response.recentSearches))
     }
 }
 

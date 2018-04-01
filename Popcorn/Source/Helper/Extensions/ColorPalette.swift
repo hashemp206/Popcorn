@@ -11,6 +11,10 @@ import UIKit
 
 extension UIColor {
     
+    class var systemTintColor: UIColor {
+        return UIView().tintColor
+    }
+    
     class var backgroundColor: UIColor {
         return UIColor.white
     }
