@@ -212,6 +212,9 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
                     collectionNode.setContentOffset(CGPoint(x: 0, y: -initialSafeAreaInsetTop), animated: true)
                 }
                 
+                // cancel any pending search
+                interactor?.cancelSearch()
+                
             case .loading:
                 
                 // hide suggestions node, if visible

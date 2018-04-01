@@ -13,10 +13,8 @@ class PopcornApi {
     private var searchRequestID: String?
     func search(withQuery query: String, page pageNumber: Int, completion: @escaping ([Movie]?, Error?) -> Void)
     {
-        // cancel previous request, this happens when previous search request has not completed, and user initiated a new search request
-        if let searchRequestID = searchRequestID {
-            FNetworking.cancel(searchRequestID)
-        }
+        // cancel previous search request
+        cancelSearch()
         
         searchRequestID = FNetworking.get(App.MovieRouter.search(query: query, page: pageNumber).path) { result in
             switch result {
@@ -33,6 +31,14 @@ class PopcornApi {
             case .failure(let failure):
                 completion(nil, failure.error)
             }
+        }
+    }
+    
+    func cancelSearch()
+    {
+        // cancel previous request, this happens when previous search request has not completed, and user initiated a new search request
+        if let searchRequestID = searchRequestID {
+            FNetworking.cancel(searchRequestID)
         }
     }
 }

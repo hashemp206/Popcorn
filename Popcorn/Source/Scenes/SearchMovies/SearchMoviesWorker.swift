@@ -15,8 +15,8 @@ import SwiftyUserDefaults
 
 class SearchMoviesWorker
 {
-    let popcornApi = PopcornApi()
-    let recentSearchesStore: RecentSearchesStoreProtocol
+    private let popcornApi = PopcornApi()
+    private let recentSearchesStore: RecentSearchesStoreProtocol
     
     init() {
         recentSearchesStore = RecentSearchesUserDefaultsStore()
@@ -43,6 +43,10 @@ class SearchMoviesWorker
         }
     }
     
+    func cancelSearch()
+    {
+        popcornApi.cancelSearch()
+    }
     
     private func store(newSearchTerm term: String)
     {

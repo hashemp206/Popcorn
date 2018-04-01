@@ -15,6 +15,7 @@ protocol SearchMoviesBusinessLogic
     func searchMovies(request: SearchMovies.Search.Request)
     func fetchNextPage()
     func fetchRecentSearches()
+    func cancelSearch()
 }
 
 protocol SearchMoviesDataStore
@@ -75,6 +76,11 @@ class SearchMoviesInteractor: SearchMoviesBusinessLogic, SearchMoviesDataStore
         worker.fetchRecentSearches().then { [weak self] recentSearches -> Void in
             self?.presenter?.presentRecentSearches(response: SearchMovies.FetchRecentSearches.Response(recentSearches: recentSearches))
             }
+    }
+    
+    func cancelSearch()
+    {
+        worker.cancelSearch()
     }
 }
 
