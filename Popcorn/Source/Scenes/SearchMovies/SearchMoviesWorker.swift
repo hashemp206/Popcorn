@@ -28,7 +28,7 @@ class SearchMoviesWorker
             popcornApi.search(withQuery: searchTerm, page: page, completion: $0)
             }.then { [weak self] movies -> Promise<[Movie]> in
                 
-                if page == 1 {
+                if page == 1 && movies.isEmpty == false {
                     // store new successfull search term
                     self?.store(newSearchTerm: searchTerm)
                 }
