@@ -147,9 +147,6 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
         // by default searchController obscure the view it is presented over, because we use the current view to display result, so we disbale it
         searchController.obscuresBackgroundDuringPresentation = false
         
-        // we want to know when searchController will present or dismissed
-        searchController.delegate = self
-        
         // set searchBar delegate to self. we want to know when user has pressed the search button to init search request
         searchController.searchBar.delegate = self
         
@@ -404,11 +401,6 @@ extension SearchMoviesViewController: ASCollectionDelegateFlowLayout
             return false
         }
     }
-}
-
-extension SearchMoviesViewController: UISearchControllerDelegate
-{
-    
 }
 
 extension SearchMoviesViewController: UISearchBarDelegate
