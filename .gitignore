@@ -72,7 +72,6 @@ fastlane/test_output
 
 # ignore Documnetations folder
 #
-Documentation/
 
 # Injection for Xcode
 #
