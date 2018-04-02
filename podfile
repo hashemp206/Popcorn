@@ -7,18 +7,18 @@ inhibit_all_warnings!
 use_frameworks!
 
 def shared_pods
+    pod 'Texture'
     pod 'SwiftyUserDefaults'
     pod 'PromiseKit', '~> 4.4'
     pod 'AsyncSwift'
     pod 'Networking', :git => 'https://github.com/3lvis/Networking.git'
+    pod 'AttributedLib'
 end
 
 target 'Popcorn' do
 
 shared_pods
 
-pod 'Texture'
-pod 'AttributedLib'
 
 end
 
