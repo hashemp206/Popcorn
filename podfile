@@ -6,16 +6,22 @@ inhibit_all_warnings!
 # if using swift with objective c we must use frameworks
 use_frameworks!
 
+def shared_pods
+    pod 'SwiftyUserDefaults'
+    pod 'PromiseKit', '~> 4.4'
+    pod 'AsyncSwift'
+    pod 'Networking', :git => 'https://github.com/3lvis/Networking.git'
+end
+
 target 'Popcorn' do
 
+shared_pods
+
 pod 'Texture'
-pod 'SwiftyUserDefaults'
-pod 'ReachabilitySwift', '~> 3'
-pod 'PMKVObserver', '~> 2.0'
-pod 'Networking', :git => 'https://github.com/3lvis/Networking.git'
-pod 'PromiseKit', '~> 4.4'
-pod 'PluggableApplicationDelegate'
-pod 'AsyncSwift'
 pod 'AttributedLib'
 
+end
+
+target 'PopcornTests' do
+    shared_pods
 end

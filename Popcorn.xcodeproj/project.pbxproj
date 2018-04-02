@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1117D9F2EB2E452D495100B8 /* Pods_Popcorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8817C72FC35999F21CAB412C /* Pods_Popcorn.framework */; };
+		1849F58CAC1E92D54EC6F241 /* Pods_PopcornTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CCA93E962891322678CCA8 /* Pods_PopcornTests.framework */; };
+		943996BA2072AF1300CE8C4C /* SearchMoviesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943996B92072AF1300CE8C4C /* SearchMoviesInteractorTests.swift */; };
 		9446DF9A206CCDF3009CBE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446DF99206CCDF3009CBE8C /* AppDelegate.swift */; };
 		9446DFA1206CCDF3009CBE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9446DFA0206CCDF3009CBE8C /* Assets.xcassets */; };
 		9446DFAF206CCDF3009CBE8C /* PopcornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446DFAE206CCDF3009CBE8C /* PopcornTests.swift */; };
@@ -46,6 +48,18 @@
 		94DF99BD2070C46300611294 /* SuggestionsNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99BC2070C46300611294 /* SuggestionsNode.swift */; };
 		94DF99BF2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */; };
 		94DF99C1207155B700611294 /* SearchMoviesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99C0207155B700611294 /* SearchMoviesDataSource.swift */; };
+		94DF99C52072983500611294 /* SearchMoviesWokerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99C42072983500611294 /* SearchMoviesWokerTests.swift */; };
+		94DF99C72072988B00611294 /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99C62072988B00611294 /* Seeds.swift */; };
+		94DF99C8207298B700611294 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC7F206CDD2B00AE05B7 /* Movie.swift */; };
+		94DF99C920729A7900611294 /* SearchMoviesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC99206D6C9F00AE05B7 /* SearchMoviesWorker.swift */; };
+		94DF99CA2072A97400611294 /* DomainURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC84206D1DFD00AE05B7 /* DomainURLs.swift */; };
+		94DF99CB2072A97400611294 /* Networking+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC8C206D22EF00AE05B7 /* Networking+Extensions.swift */; };
+		94DF99CC2072A97400611294 /* PopcornApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC8E206D235300AE05B7 /* PopcornApi.swift */; };
+		94DF99CD2072A97400611294 /* RecentSearchesUserDefaultsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */; };
+		94DF99CE2072A9CD00611294 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC87206D1F2800AE05B7 /* Constants.swift */; };
+		94DF99CF2072AA8500611294 /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BAC451206EBB0A00AD5303 /* UtilityExtensions.swift */; };
+		94DF99D02072AA9800611294 /* PageMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9490535A206ECE990003E216 /* PageMovies.swift */; };
+		94DF99D12072AAAC00611294 /* Codable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AFC82206CDD9800AE05B7 /* Codable+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +73,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08B38C7812945E03DB873BCE /* Pods-PopcornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopcornTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PopcornTests/Pods-PopcornTests.release.xcconfig"; sourceTree = "<group>"; };
 		79F3E1FDF29369A65D800DD2 /* Pods-Popcorn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Popcorn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn.debug.xcconfig"; sourceTree = "<group>"; };
+		81CCA93E962891322678CCA8 /* Pods_PopcornTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopcornTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8817C72FC35999F21CAB412C /* Pods_Popcorn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Popcorn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		943996B92072AF1300CE8C4C /* SearchMoviesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesInteractorTests.swift; sourceTree = "<group>"; };
 		9446DF96206CCDF3009CBE8C /* Popcorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Popcorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9446DF99206CCDF3009CBE8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9446DFA0206CCDF3009CBE8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,6 +128,9 @@
 		94DF99BC2070C46300611294 /* SuggestionsNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsNode.swift; sourceTree = "<group>"; };
 		94DF99BE2070EFD000611294 /* RecentSearchesUserDefaultsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesUserDefaultsStore.swift; sourceTree = "<group>"; };
 		94DF99C0207155B700611294 /* SearchMoviesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesDataSource.swift; sourceTree = "<group>"; };
+		94DF99C42072983500611294 /* SearchMoviesWokerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesWokerTests.swift; sourceTree = "<group>"; };
+		94DF99C62072988B00611294 /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
+		E204DBF26637A5FB33AB2E90 /* Pods-PopcornTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopcornTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopcornTests/Pods-PopcornTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F379C4B241833C8705BEFB98 /* Pods-Popcorn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Popcorn.release.xcconfig"; path = "Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1849F58CAC1E92D54EC6F241 /* Pods_PopcornTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +159,8 @@
 			children = (
 				79F3E1FDF29369A65D800DD2 /* Pods-Popcorn.debug.xcconfig */,
 				F379C4B241833C8705BEFB98 /* Pods-Popcorn.release.xcconfig */,
+				E204DBF26637A5FB33AB2E90 /* Pods-PopcornTests.debug.xcconfig */,
+				08B38C7812945E03DB873BCE /* Pods-PopcornTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -175,6 +198,7 @@
 		9446DFAD206CCDF3009CBE8C /* PopcornTests */ = {
 			isa = PBXGroup;
 			children = (
+				94DF99C32072980300611294 /* Workers */,
 				9446DFAE206CCDF3009CBE8C /* PopcornTests.swift */,
 				9446DFB0206CCDF3009CBE8C /* Info.plist */,
 			);
@@ -360,10 +384,21 @@
 			path = ErrorStatuses;
 			sourceTree = "<group>";
 		};
+		94DF99C32072980300611294 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				94DF99C42072983500611294 /* SearchMoviesWokerTests.swift */,
+				943996B92072AF1300CE8C4C /* SearchMoviesInteractorTests.swift */,
+				94DF99C62072988B00611294 /* Seeds.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
 		B2B5484F2C53DA2AA002BD78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				8817C72FC35999F21CAB412C /* Pods_Popcorn.framework */,
+				81CCA93E962891322678CCA8 /* Pods_PopcornTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -395,9 +430,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9446DFB6206CCDF3009CBE8C /* Build configuration list for PBXNativeTarget "PopcornTests" */;
 			buildPhases = (
+				DD6932A82129DB27BD912013 /* [CP] Check Pods Manifest.lock */,
 				9446DFA6206CCDF3009CBE8C /* Sources */,
 				9446DFA7206CCDF3009CBE8C /* Frameworks */,
 				9446DFA8206CCDF3009CBE8C /* Resources */,
+				6A2D366F3922C76B21226CD6 /* [CP] Embed Pods Frameworks */,
+				8D2EC6E9DDE05A4EBFC4A56F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -469,6 +507,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6A2D366F3922C76B21226CD6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PopcornTests/Pods-PopcornTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AsyncSwift/Async.framework",
+				"${BUILT_PRODUCTS_DIR}/Networking/Networking.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Async.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Networking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PopcornTests/Pods-PopcornTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D2EC6E9DDE05A4EBFC4A56F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PopcornTests/Pods-PopcornTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		ABD5D6E24A7E32CA94A55772 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -502,6 +579,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Popcorn/Pods-Popcorn-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DD6932A82129DB27BD912013 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PopcornTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F45E5D033BB5F0600CF0A06C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -515,10 +610,7 @@
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
-				"${BUILT_PRODUCTS_DIR}/PMKVObserver/PMKVObserver.framework",
-				"${BUILT_PRODUCTS_DIR}/PluggableApplicationDelegate/PluggableApplicationDelegate.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 			);
@@ -530,10 +622,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PMKVObserver.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PluggableApplicationDelegate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 			);
@@ -591,7 +680,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DF99D12072AAAC00611294 /* Codable+Utils.swift in Sources */,
+				943996BA2072AF1300CE8C4C /* SearchMoviesInteractorTests.swift in Sources */,
 				9446DFAF206CCDF3009CBE8C /* PopcornTests.swift in Sources */,
+				94DF99C52072983500611294 /* SearchMoviesWokerTests.swift in Sources */,
+				94DF99C8207298B700611294 /* Movie.swift in Sources */,
+				94DF99C72072988B00611294 /* Seeds.swift in Sources */,
+				94DF99C920729A7900611294 /* SearchMoviesWorker.swift in Sources */,
+				94DF99CE2072A9CD00611294 /* Constants.swift in Sources */,
+				94DF99CA2072A97400611294 /* DomainURLs.swift in Sources */,
+				94DF99CF2072AA8500611294 /* UtilityExtensions.swift in Sources */,
+				94DF99CD2072A97400611294 /* RecentSearchesUserDefaultsStore.swift in Sources */,
+				94DF99CC2072A97400611294 /* PopcornApi.swift in Sources */,
+				94DF99CB2072A97400611294 /* Networking+Extensions.swift in Sources */,
+				94DF99D02072AA9800611294 /* PageMovies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +853,7 @@
 		};
 		9446DFB7206CCDF3009CBE8C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E204DBF26637A5FB33AB2E90 /* Pods-PopcornTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -768,6 +871,7 @@
 		};
 		9446DFB8206CCDF3009CBE8C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08B38C7812945E03DB873BCE /* Pods-PopcornTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
