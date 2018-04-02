@@ -26,7 +26,7 @@ protocol SearchMoviesDataStore
 class SearchMoviesInteractor: SearchMoviesBusinessLogic, SearchMoviesDataStore
 {
     var presenter: SearchMoviesPresentationLogic?
-    var worker = SearchMoviesWorker()
+    var worker = SearchMoviesWorker(recentSearchesStore: RecentSearchesUserDefaultsStore())
     
     
     private var page: Int = 0

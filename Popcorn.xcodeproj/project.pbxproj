@@ -10,6 +10,8 @@
 		1117D9F2EB2E452D495100B8 /* Pods_Popcorn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8817C72FC35999F21CAB412C /* Pods_Popcorn.framework */; };
 		1849F58CAC1E92D54EC6F241 /* Pods_PopcornTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81CCA93E962891322678CCA8 /* Pods_PopcornTests.framework */; };
 		943996BA2072AF1300CE8C4C /* SearchMoviesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943996B92072AF1300CE8C4C /* SearchMoviesInteractorTests.swift */; };
+		943996BE2072B01300CE8C4C /* SearchMoviesInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943996BD2072B01300CE8C4C /* SearchMoviesInteractorTests.swift */; };
+		943996C02072B02500CE8C4C /* SearchMoviesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943996BF2072B02500CE8C4C /* SearchMoviesViewControllerTests.swift */; };
 		9446DF9A206CCDF3009CBE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446DF99206CCDF3009CBE8C /* AppDelegate.swift */; };
 		9446DFA1206CCDF3009CBE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9446DFA0206CCDF3009CBE8C /* Assets.xcassets */; };
 		9446DFAF206CCDF3009CBE8C /* PopcornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446DFAE206CCDF3009CBE8C /* PopcornTests.swift */; };
@@ -78,6 +80,8 @@
 		81CCA93E962891322678CCA8 /* Pods_PopcornTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopcornTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8817C72FC35999F21CAB412C /* Pods_Popcorn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Popcorn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		943996B92072AF1300CE8C4C /* SearchMoviesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesInteractorTests.swift; sourceTree = "<group>"; };
+		943996BD2072B01300CE8C4C /* SearchMoviesInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesInteractorTests.swift; sourceTree = "<group>"; };
+		943996BF2072B02500CE8C4C /* SearchMoviesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesViewControllerTests.swift; sourceTree = "<group>"; };
 		9446DF96206CCDF3009CBE8C /* Popcorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Popcorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9446DF99206CCDF3009CBE8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9446DFA0206CCDF3009CBE8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -165,6 +169,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		943996BB2072AFD400CE8C4C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				943996BC2072AFE200CE8C4C /* SearchMovies */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		943996BC2072AFE200CE8C4C /* SearchMovies */ = {
+			isa = PBXGroup;
+			children = (
+				943996BD2072B01300CE8C4C /* SearchMoviesInteractorTests.swift */,
+				943996BF2072B02500CE8C4C /* SearchMoviesViewControllerTests.swift */,
+			);
+			path = SearchMovies;
+			sourceTree = "<group>";
+		};
 		9446DF8D206CCDF3009CBE8C = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +219,7 @@
 		9446DFAD206CCDF3009CBE8C /* PopcornTests */ = {
 			isa = PBXGroup;
 			children = (
+				943996BB2072AFD400CE8C4C /* Scenes */,
 				94DF99C32072980300611294 /* Workers */,
 				9446DFAE206CCDF3009CBE8C /* PopcornTests.swift */,
 				9446DFB0206CCDF3009CBE8C /* Info.plist */,
@@ -691,7 +713,9 @@
 				94DF99CA2072A97400611294 /* DomainURLs.swift in Sources */,
 				94DF99CF2072AA8500611294 /* UtilityExtensions.swift in Sources */,
 				94DF99CD2072A97400611294 /* RecentSearchesUserDefaultsStore.swift in Sources */,
+				943996C02072B02500CE8C4C /* SearchMoviesViewControllerTests.swift in Sources */,
 				94DF99CC2072A97400611294 /* PopcornApi.swift in Sources */,
+				943996BE2072B01300CE8C4C /* SearchMoviesInteractorTests.swift in Sources */,
 				94DF99CB2072A97400611294 /* Networking+Extensions.swift in Sources */,
 				94DF99D02072AA9800611294 /* PageMovies.swift in Sources */,
 			);

@@ -18,8 +18,8 @@ class SearchMoviesWorker
     private let popcornApi = PopcornApi()
     private let recentSearchesStore: RecentSearchesStoreProtocol
     
-    init() {
-        recentSearchesStore = RecentSearchesUserDefaultsStore()
+    init(recentSearchesStore: RecentSearchesStoreProtocol) {
+        self.recentSearchesStore = recentSearchesStore
     }
     
     func searchMovies(withSearchTerm searchTerm: String, page: Int) -> Promise<[Movie]>
