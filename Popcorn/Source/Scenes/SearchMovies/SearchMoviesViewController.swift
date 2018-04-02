@@ -207,8 +207,8 @@ class SearchMoviesViewController: ASViewController<ASDisplayNode>, SearchMoviesD
                 let status = StatusModel(title: "Search your favorites movies", image: #imageLiteral(resourceName: "logo"))
                 show(status: status)
                 
-                //  for the first time when there is no result if we hit cancel button in the search bar, collectionNode doesn't move to corrct offset
-                if dataSource.isEmpty == false {
+                //  if collectionNode contentSize height is less than view height and we hit cancel button in the search bar, collectionNode doesn't move to corrct offset
+                if collectionNode.view.contentSize.height > view.height {
                     collectionNode.setContentOffset(CGPoint(x: 0, y: -initialSafeAreaInsetTop), animated: true)
                 }
                 
