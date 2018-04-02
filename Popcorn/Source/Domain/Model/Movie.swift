@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Movie: Decodable {
     
     let id: Int
@@ -19,6 +18,14 @@ struct Movie: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id, title = "original_title", poster_path, releaseDate = "release_date", description = "overview"
+    }
+    
+    init(id: Int, title: String, releaseDate: Date?, description: String, poster_path: String?) {
+        self.id = id
+        self.title = title
+        self.releaseDate = releaseDate
+        self.description = description
+        self.poster_path = poster_path
     }
 }
 

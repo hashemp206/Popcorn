@@ -22,7 +22,6 @@ enum App {
     }
     
     enum MovieRouter {
-        // we need to include pagination object as parameter to all case
         case search(query: String, page: Int)
     }
 }
