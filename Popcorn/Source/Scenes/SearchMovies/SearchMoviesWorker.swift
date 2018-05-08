@@ -24,15 +24,26 @@ class SearchMoviesWorker
     
     func searchMovies(withSearchTerm searchTerm: String, page: Int) -> Promise<[Movie]>
     {
-        return wrap {
-            popcornApi.search(withQuery: searchTerm, page: page, completion: $0)
-            }.then { [weak self] movies -> Promise<[Movie]> in
-                
-                if page == 1 && movies.isEmpty == false {
-                    // store new successfull search term
-                    self?.store(newSearchTerm: searchTerm)
+        // beacuse of a bug in Swift 4.1 I can't use wrap PromiseKit wrap here. see: https://github.com/mxcl/PromiseKit/issues/834
+        
+        return Promise { fulfill, reject in
+            popcornApi.search(withQuery: searchTerm, page: page, completion: { [weak self] (movies, error) in
+                if let error = error {
+                    reject(error)
+                } else if let movies = movies {
+                    
+                    // if search query had some result, store the successfull search term
+                    if page == 1 && movies.isEmpty == false {
+                        // store new successfull search term
+                        self?.store(newSearchTerm: searchTerm)
+                    }
+                    
+                    fulfill(movies)
+                } else {
+                    let error = NSError(domain: Constants.fidilioDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "unknown error occured while fetching movies"])
+                    reject(error)
                 }
-                return Promise(value: movies)
+            })
         }
     }
     

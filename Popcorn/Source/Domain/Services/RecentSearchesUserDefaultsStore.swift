@@ -41,7 +41,8 @@ class RecentSearchesUserDefaultsStore: RecentSearchesStoreProtocol {
     
     func insert(newSearchTerm term: String)
     {
-        if var recentSearches = Defaults[.recentSearches] {
+        // if search term is not in recent searches
+        if var recentSearches = Defaults[.recentSearches], !recentSearches.contains(term) {
             
             // new searchTerm will inserted at top
             recentSearches.insert(term, at: 0)

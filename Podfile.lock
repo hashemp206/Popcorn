@@ -45,6 +45,17 @@ DEPENDENCIES:
   - SwiftyUserDefaults
   - Texture
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AsyncSwift
+    - AttributedLib
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
+    - PromiseKit
+    - SwiftyUserDefaults
+    - Texture
+
 EXTERNAL SOURCES:
   Networking:
     :git: https://github.com/3lvis/Networking.git
@@ -67,4 +78,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 031e153839e301fc60cc35f15d1f8af7affc58b0
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

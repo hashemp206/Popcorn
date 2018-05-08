@@ -11,6 +11,7 @@ import SwiftyUserDefaults
 
 struct Constants {
     static let ApiKey: String = "2696829a81b1b5827d515ff121700838"
+    static let fidilioDomain = "fidilio.com.ios"
 }
 
 extension DefaultsKeys {
